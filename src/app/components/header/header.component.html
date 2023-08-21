@@ -1,0 +1,84 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <button (click)="drawer.toggle()" mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Blog Admin</span>
+
+  <span class="example-spacer"></span>
+
+  <form action="#">
+    <div class="form-input">
+      <input type="search" placeholder="Search..." />
+      <button type="button" class="search-btn">
+        <i class="bx bx-search"></i>
+      </button>
+    </div>
+  </form>
+
+  <a mat-icon-button [mat-menu-trigger-for]="menu">
+    <mat-icon *ngIf="!avatar">account_circle</mat-icon>
+    <img *ngIf="avatar" [src]="avatar" />
+  </a>
+
+  <a
+    mat-flat-button
+    color="primary"
+    href="https://github.com/mmk-Narola"
+    target="_blank"
+    matTooltip="GitHub link"
+  >
+    <i class="fa fa-github"></i> GitHub
+  </a>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/dashboard/profile">
+      <mat-icon>person</mat-icon>{{ isAdmin ? "Admin" : "User" }}
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>Logout
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+<mat-drawer-container autosize>
+  <mat-drawer #drawer opened="true" mode="side" position="start">
+    <mat-nav-list>
+      <mat-list-item routerLink="/dashboard">
+        <button mat-button><mat-icon>dashboard</mat-icon> Dashboard</button>
+      </mat-list-item>
+      <mat-list-item routerLink="/dashboard/addblog">
+        <button mat-button><mat-icon>post_add</mat-icon> Blog Post</button>
+      </mat-list-item>
+      <mat-list-item routerLink="">
+        <button mat-button><mat-icon>message</mat-icon> Message</button>
+      </mat-list-item>
+      <mat-list-item routerLink="">
+        <button mat-button>
+          <mat-icon>insert_chart_outlined</mat-icon> Statistics
+        </button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button mat-button routerLink="/">
+          <mat-icon>preview</mat-icon> Preview Blog
+        </button>
+      </mat-list-item>
+
+      <mat-divider class="mt-4"></mat-divider>
+
+      <mat-list-item>
+        <button mat-button><mat-icon>settings</mat-icon> Settings</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button (click)="logout()">
+          <mat-icon>logout</mat-icon> Logout
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div style="text-align: center; min-height: 600px">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

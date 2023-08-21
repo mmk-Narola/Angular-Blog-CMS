@@ -1,0 +1,9 @@
+<app-blog-header></app-blog-header>
+<div class="container responsive-grid">
+  <ng-container *ngFor="let item of dataArray?.list">
+    <app-blog-card
+      [blogList]="item"
+      (idEmitter)="reviceBlodId($event)"
+    ></app-blog-card>
+  </ng-container>
+</div>

@@ -1,0 +1,230 @@
+<div class="d-flex justify-content-center mt-4">
+  <mat-card class="my-4 w-50">
+    <mat-card-header
+      class="mat-elevation-z2 custom-card-header justify-content-between"
+    >
+      <mat-card-title class="mat-h1"> Registration </mat-card-title>
+      <div>
+        <span class="mat-h4">Already Registered? </span>
+        <button
+          mat-raised-button
+          class="mat-elevation-z4"
+          [routerLink]="['/login']"
+        >
+          Login
+        </button>
+      </div>
+    </mat-card-header>
+    <mat-card-content class="p-3">
+      <form
+        [formGroup]="userRegistrationForm"
+        (ngSubmit)="registerUser()"
+        novalidate
+      >
+        <mat-form-field class="w-50" appearance="outline">
+          <mat-label>First name</mat-label>
+          <input
+            matInput
+            placeholder="First name"
+            formControlName="firstName"
+            required
+          />
+          <mat-error
+            *ngIf="
+              registrationFormControl.firstName.touched &&
+              registrationFormControl.firstName.errors?.['required']
+            "
+          >
+            First Name is required
+          </mat-error>
+
+          <mat-error
+            *ngIf="registrationFormControl.firstName.errors?.['pattern']"
+          >
+            Do not use space and any special symbol
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-50" appearance="outline">
+          <mat-label>Last name</mat-label>
+          <input
+            matInput
+            placeholder="Last Name"
+            formControlName="lastName"
+            required
+          />
+          <mat-error
+            *ngIf="
+              registrationFormControl.lastName.touched &&
+              registrationFormControl.lastName.errors?.['required']
+            "
+          >
+            Last Name is required
+          </mat-error>
+
+          <mat-error
+            *ngIf="registrationFormControl.lastName.errors?.['pattern']"
+          >
+            Do not use space and any special symbol
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-50" appearance="outline">
+          <mat-label>User name</mat-label>
+          <input
+            matInput
+            placeholder="User Name"
+            formControlName="username"
+            required
+          />
+          <mat-error
+            *ngIf="
+              registrationFormControl.username.touched &&
+              registrationFormControl.username.errors?.['required']
+            "
+          >
+            User Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+           
+              registrationFormControl.username.errors?.['pattern']
+            "
+          >
+            User Name is not available
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-50" appearance="outline">
+          <mat-label>Mobile</mat-label>
+          <input
+            matInput
+            placeholder="Mobile number"
+            formControlName="mobile"
+            required
+          />
+          <mat-error
+            *ngIf="
+              registrationFormControl.mobile.touched &&
+              registrationFormControl.mobile.errors?.['required']
+            "
+          >
+            Mobile number is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              registrationFormControl.mobile.touched &&
+              registrationFormControl.mobile.errors?.['pattern']
+            "
+          >
+            Mobile number is not available
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-50" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Email"
+            formControlName="email"
+            required
+          />
+          <mat-error
+            *ngIf="
+              registrationFormControl.email.touched &&
+              registrationFormControl.email.errors?.['required']
+            "
+          >
+            Email is required
+          </mat-error>
+
+          <mat-error
+            *ngIf="
+              registrationFormControl.email.errors?.['pattern']
+            "
+          >
+            Enter valid email
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-50" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            placeholder="Password"
+            formControlName="password"
+            [type]="showPassword ? 'text' : 'password'"
+            required
+          />
+          <mat-icon matSuffix (click)="showPassword = !showPassword">
+            {{ showPassword ? "visibility" : "visibility_off" }}
+          </mat-icon>
+
+          <mat-error
+            *ngIf="
+              registrationFormControl.password.touched &&
+              registrationFormControl.password.errors?.['required']
+            "
+          >
+            Password is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+          
+              registrationFormControl.password.errors?.['pattern']
+            "
+          >
+            Passwors should have minimum 6 characters, 1 uppercase, letter &
+            number
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-4">
+          <mat-label>Profile Img (Optional)</mat-label>
+          <div>
+            <mat-toolbar>
+              <input
+                matInput
+                [value]="
+                  selectedFileNames.length
+                    ? selectedFileNames
+                    : 'Upload Picture'
+                "
+              />
+
+              <button
+                mat-mini-fab
+                matTooltip="Add Image"
+                class="select-btn"
+                [disabled]="!selectedFiles"
+              >
+                <mat-icon>add_a_photo</mat-icon>
+              </button>
+            </mat-toolbar>
+
+            <input
+              type="file"
+              id="fileInput"
+              name="fileInput"
+              accept="image/*"
+              multiple
+              (change)="selectFiles($event)"
+            />
+          </div>
+        </mat-form-field>
+
+        <div>
+          <img
+            *ngFor="let preview of previews"
+            [src]="preview"
+            class="preview"
+          />
+        </div>
+
+        <mat-card-actions align="end">
+          <button mat-raised-button color="primary">Register</button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

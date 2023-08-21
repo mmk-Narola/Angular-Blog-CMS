@@ -1,0 +1,100 @@
+<!-- app.component.html -->
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      {{ isEdit ? "Update Post " : "Create Post" }}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="blogPost" (ngSubmit)="onSubmitBlog()" novalidate>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          type="text"
+          name="title"
+          formControlName="title"
+          required
+        />
+      </mat-form-field>
+      <ckeditor
+        [config]="{ placeholder: 'Type the content here' ,
+
+      }"
+        [editor]="Editor"
+        formControlName="description"
+        required
+        class="mt-2"
+      >
+      </ckeditor>
+
+      <mat-form-field class="w-100 mt-4">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category" required>
+          <mat-option *ngFor="let cate of category" [value]="cate.value">
+            {{ cate.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="w-100 mt-4" appearance="fill">
+        <mat-label>Image</mat-label>
+        <div>
+          <mat-toolbar>
+            <input
+              matInput
+              [value]="
+                selectedFileNames.length ? selectedFileNames : 'Upload Image'
+              "
+            />
+
+            <button
+              mat-mini-fab
+              matTooltip="Add Image"
+              class="select-btn"
+              [disabled]="!selectedFiles"
+            >
+              <mat-icon>add_a_photo</mat-icon>
+            </button>
+          </mat-toolbar>
+
+          <input
+            type="file"
+            id="fileInput"
+            name="fileInput"
+            (change)="selectFiles($event)"
+          />
+        </div>
+      </mat-form-field>
+
+      <div class="preview" *ngIf="previewImg">
+        <img [src]="previews" height="100px" width="100px" style="margin: 0" />
+      </div>
+
+      <div class="preview" *ngIf="isEdit">
+        <img
+          src="http://192.168.100.89:4000/blogs/{{ blogImg }}"
+          height="100px"
+          width="100px"
+          style="margin: 0"
+        />
+      </div>
+
+      <mat-card-actions>
+        <!-- <button mat-raised-button color="primary">Create</button> -->
+        <button mat-raised-button color="primary">
+          {{ isEdit ? "Update " : "Create" }}
+        </button>
+        <button
+          mat-raised-button
+          color="accent"
+          style="margin-left: 10px"
+          (click)="back()"
+        >
+          Cancel
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

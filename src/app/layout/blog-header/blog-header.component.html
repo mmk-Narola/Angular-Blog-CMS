@@ -1,0 +1,40 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <span [routerLink]="['/']" routerLinkActive="router-link-active">
+    Angular-Mg
+  </span>
+
+  <span class="example-spacer"></span>
+  <!-- 
+  <ng-container *ngIf="isLoginUser">
+    <a mat-flat-button color="primary" [matMenuTriggerFor]="menu">
+      <mat-icon>arrow_drop_down</mat-icon>
+      <span> {{ loginInfo?.firstName + " " + loginInfo?.lastName }}</span>
+    </a>
+    <mat-menu #menu="matMenu" xPosition="before">
+      <button mat-menu-item routerLink="/dashboard">
+        <mat-icon>note_add</mat-icon>
+        Add Blog
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Logout
+      </button>
+    </mat-menu>
+  </ng-container> -->
+
+  <!-- <ng-container *ngIf="isNotLogin">
+    <button mat-flat-button color="primary" routerLink="/login">
+      <mat-icon>login</mat-icon>Login
+    </button>
+  </ng-container> -->
+
+  <a
+    mat-flat-button
+    color="primary"
+    href="https://github.com/mmk-Narola"
+    target="_blank"
+    matTooltip="GitHub link"
+  >
+    <i class="fa fa-github"></i> GitHub
+  </a>
+</mat-toolbar>

@@ -1,0 +1,73 @@
+<app-blog-header></app-blog-header>
+
+<ng-container *ngIf="blogListdata; else noMovieFound">
+  <div class="container">
+    <mat-card class="mt-4">
+      <mat-card-header
+        class="mat-elevation-z2 custom-card-header d-flex justify-content-between"
+      >
+        <mat-card-title class="mat-h1">{{ blogData.title }}</mat-card-title>
+        <button
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/']"
+          routerLinkActive="router-link-active"
+        >
+          Back
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-card-header>
+      <mat-card-content>
+        <img
+          mat-card-image
+          src="http://192.168.100.89:4000/blogs/{{ blogData.image }}"
+          alt="No image available"
+        />
+
+        <div [innerHTML]="blogData?.description"></div>
+
+        <div class="d-flex justify-content-between">
+          <span><strong>Category</strong> : {{ blogData.category }}</span>
+
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="likePost(blogData._id)"
+          >
+            LIKE
+            <mat-icon class="custom-icon">thumb_up</mat-icon>
+            <!-- <mat-icon class="larger-icon">favorite</mat-icon> -->
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <app-comments></app-comments>
+    <app-post-comments [blogId]="blogId"></app-post-comments>
+  </div>
+</ng-container>
+
+<ng-template #noMovieFound>
+  <div class="d-flex justify-content-center mt-4">
+    <div
+      class="spinner-border text-primary"
+      role="status"
+      *ngIf="isLoading"
+    ></div>
+  </div>
+</ng-template>
+
+<!--  <div class="d-flex flex-column align-items-center mt-4" *ngIf="isLoading">
+    <div>
+      <h1 class="display-4">No blog found.</h1>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" [routerLink]="['/']">
+        Back to Home
+      </button>
+    </div>
+  </div> -->
+
+<!-- <div>
+  <div [innerHTML]="blogData?.description"></div>
+</div> -->

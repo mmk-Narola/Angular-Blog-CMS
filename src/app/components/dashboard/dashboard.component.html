@@ -1,0 +1,144 @@
+<!-- <div *ngFor="let item of backendHtmlContent">
+  <div [innerHTML]="item.category"></div>
+</div> -->
+
+<div class="container">
+  <ul class="box-info">
+    <li>
+      <i class="bi bi-file-richtext bx"></i>
+      <span class="text">
+        <h3>1020</h3>
+        <p>Post</p>
+      </span>
+    </li>
+    <li>
+      <!-- <i class="bx bxs-group"></i> -->
+      <i class="bi bi-people-fill bx"></i>
+      <span class="text">
+        <h3>2834</h3>
+        <p>Subcriber</p>
+      </span>
+    </li>
+    <li>
+      <i class="bi bi-chat-dots-fill bx"></i>
+      <span class="text">
+        <h3>2543</h3>
+        <p>Comment</p>
+      </span>
+    </li>
+  </ul>
+
+  <div
+    style="display: flex; justify-content: space-between; align-items: center"
+  >
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input />
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="accent"
+      style="margin-left: 10px"
+      (click)="addPost()"
+    >
+      Add Post
+    </button>
+  </div>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</td>
+      </ng-container>
+
+      <!-- Progress Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+        <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+        <td mat-cell *matCellDef="let row">{{ row.category }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef>Image</th>
+        <td mat-cell *matCellDef="let row">
+          <img [src]="blog + row.image" />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action" class="action">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Action</th>
+        <td mat-cell *matCellDef="let row">
+          <div class="btn">
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="editBlogById(row._id)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="deletBlogbyId(row._id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="view">
+        <th mat-header-cell *matHeaderCellDef>Preview</th>
+        <td mat-cell *matCellDef="let row">
+          <button
+            mat-icon-button
+            color="primary"
+            [routerLink]="['/']"
+            routerLinkActive="router-link-active"
+          >
+            <mat-icon>preview</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayColums"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayColums"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="7">No data matching the filter</td>
+      </tr>
+
+      <tr class="mat-row" *ngIf="!blogList.length">
+        <td class="mat-cell" colspan="7">No data matching the filter</td>
+      </tr>
+    </table>
+
+    <table>
+      <tr class="mat-row">
+        <div class="d-flex justify-content-center">
+          <div
+            class="spinner-border text-primary"
+            role="status"
+            *ngIf="isLoading"
+          ></div>
+        </div>
+      </tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100, 150, 200]"
+      aria-label="Select page of users"
+    >
+    </mat-paginator>
+  </div>
+</div>

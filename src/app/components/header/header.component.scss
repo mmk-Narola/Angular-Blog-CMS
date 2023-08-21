@@ -1,0 +1,55 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.profile {
+  width: 4%;
+  height: 60%;
+  border-radius: 50%;
+}
+
+.mat-drawer.mat-drawer-side {
+  width: 15%;
+  padding: 10px;
+}
+
+.mat-elevation-z8 form {
+  max-width: 400px;
+  width: 100%;
+  margin-right: auto;
+}
+form .form-input {
+  display: flex;
+  align-items: center;
+  height: 30px;
+}
+form .form-input input {
+  flex-grow: 1;
+  padding: 0 16px;
+  height: 100%;
+  border: none;
+  background: white;
+  border-radius: 36px 0 0 36px;
+  outline: none;
+  width: 100%;
+  color: black;
+  font-size: 15px;
+}
+form .form-input button {
+  width: 36px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  color: black;
+  font-size: px;
+  border: none;
+  outline: none;
+  border-radius: 0 36px 36px 0;
+  cursor: pointer;
+}
+
+.navStyle {
+  display: flex;
+}

@@ -1,0 +1,29 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{ blogList.title }}</mat-card-title>
+  </mat-card-header>
+  <br />
+  <img
+    src="http://192.168.100.89:4000/blogs/{{ blogList.image }}"
+    alt="blog Img"
+  />
+  <!-- <mat-card-content>
+    <br />
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus
+      reprehenderit fugit labore perspiciatis consectetur suscipit nam debitis
+      qui temporibus asperiores.
+    </p>
+  </mat-card-content> -->
+  <mat-card-actions class="mt-2 mb-2">
+    <button
+      mat-raised-button
+      color="primary"
+      style="margin-right: 10px"
+      (click)="sendIdToParent(blogList._id)"
+    >
+      Read More..
+    </button>
+    <button mat-raised-button color="accent">SHARE</button>
+  </mat-card-actions>
+</mat-card>
