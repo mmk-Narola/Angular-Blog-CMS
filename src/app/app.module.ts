@@ -23,6 +23,7 @@ import { MainBlogComponent } from './layout/main-blog/main-blog.component';
 import { BlogDetailsComponent } from './layout/blog-details/blog-details.component';
 import { PostCommentsComponent } from './layout/post-comments/post-comments.component';
 import { CommentsComponent } from './layout/comments/comments.component';
+import { LikeCommentComponent } from './layout/like-comment/like-comment.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { CommentsComponent } from './layout/comments/comments.component';
     BlogDetailsComponent,
     PostCommentsComponent,
     CommentsComponent,
+    LikeCommentComponent,
   ],
   imports: [
     BrowserModule,
