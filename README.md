@@ -1,6 +1,6 @@
 # AngularBlog
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.8.
+This project was Angular Blog CMS project angular material, node api, mongoDB,bootstrap
 
 ## Development server
 
